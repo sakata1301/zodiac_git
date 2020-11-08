@@ -16,7 +16,7 @@ Dùng jwt để sử dụng những api cần authencation
     nhâp vào bearer + jwt vừa nhận
 
     ex: đăng nhập trả về {
-        jwt:"12345678yttt"
+        token:"12345678yttt"
     }
 
     nhập vào ô authorization là bearer 12345678yttt
