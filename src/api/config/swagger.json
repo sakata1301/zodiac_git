@@ -1,0 +1,342 @@
+{
+    "swagger": "2.0",
+    "title": "HOROSCOPE API Documentation",
+    "description": "HOROSCOPE API course for egghead",
+    "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0",
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "zodiac",
+            "description": "API for Zodiac Endpoints"
+        },
+        {
+            "name": "user",
+            "description": "API for User Endpoints"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/zodiacs": {
+            "post": {
+                "tags": [
+                    "zodiac"
+                ],
+                "summary": "API Endpoint for create zodiac",
+                "description": "Create new zodiac in database",
+                "parameters": [
+                    {
+                        "name": "zodiac",
+                        "description": "Zodiac params to create new zodiac",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "type": "string",
+                        "description": "input here: [bearer .....jwt.....]",
+                        "in": "header",
+                        "required": "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New zodiac Created",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "zodiac"
+                ],
+                "summary": "API Endpoint for get all zodiac and find by [Name] , [Day]",
+                "description": "Find All zodiac in database with query ?page=___&perPage=____ \n Find Zodiac by day ?day=____\n Find Zodiac today ?day=today ",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "type": "integer",
+                        "description": "Define index of page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "perPage",
+                        "type": "integer",
+                        "description": "Define limit items of page",
+                        "in": "query"
+                    },
+                    {
+                        "name": "day",
+                        "type": "string",
+                        "description": "Define day",
+                        "in": "query"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "Find All": {
+                        "description": "All of zodiac",
+                        "schema": {
+                            "$ref": "#definitions/zodiacs"
+                        }
+                    },
+                    "Find by day": {
+                        "description": "Zodiac by day",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    }
+                }
+            }
+        },
+        "/zodiacs/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "type": "string",
+                    "description": "Id of the zodiac"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "zodiac"
+                ],
+                "summary": "API Endpoint to get zodiac by id",
+                "description": "Get zodiac by id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Zodiac has found",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "zodiac"
+                ],
+                "summary": "API Endpoint to delete zodiac by id",
+                "description": "Delete zodiac by id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "type": "string",
+                        "description": "input here: [bearer .....jwt.....]",
+                        "in": "header",
+                        "required": "true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Zodiac has deleted",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "zodiac"
+                ],
+                "summary": "API Endpoint to update zodiac by id",
+                "description": "Update zodiac by id",
+                "parameters": [
+                    {
+                        "name": "zodiac",
+                        "description": "Zodiac params to update zodiac",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "type": "string",
+                        "description": "input here: [bearer .....jwt.....]",
+                        "in": "header",
+                        "required": "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update zodiac success",
+                        "schema": {
+                            "$ref": "#definitions/zodiac"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/sign-up": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "API Endpoint for create user account",
+                "description": "Create new user account in database",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "description": "User params to create new account ",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definitions/user"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user account Created",
+                        "schema": {
+                            "$ref": "#definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/sign-in": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "API Endpoint for login account",
+                "description": "Login account",
+                "parameters": [
+                    {
+                        "name": "Login",
+                        "description": "User params to login account ",
+                        "in": "body",
+                        "required": "true",
+                        "schema": {
+                            "$ref": "#definitions/login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Loign Success",
+                        "schema": {
+                            "$ref": "#definitions/login"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "zodiac": {
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "dayBegin": {
+                    "type": "string"
+                },
+                "dayEnd": {
+                    "type": "string"
+                },
+                "imgURL": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "zodiacs": {
+            "properties": {
+                "docs": {
+                    "type": "string",
+                    "#ref": "#definitions/zodiac"
+                },
+                "total": {
+                    "type": "integer"
+                },
+                "pages": {
+                    "type": "integer"
+                },
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                }
+            }
+        },
+        "user": {
+            "required": [],
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "integer"
+                }
+            }
+        },
+        "login": {
+            "required": [],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

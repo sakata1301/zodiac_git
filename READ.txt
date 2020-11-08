@@ -1,0 +1,30 @@
+Các bước khởi tạo
+    -npm i 
+    -cd src
+    -nodemon app
+Em sử dụng swagger-ui-express nên vào http://localhost:3000/api-docs/ để xem các api
+
+/************************************************/
+
+Ở model users dung api/users/sign-up để đăng kí trong đó 
+    role:1 La Admin toan quyen xu li
+    role:2 La Manager chi duoc them sua du lieu,khong co quyen xoa
+
+Sao đó vào api/users/sign-in nó sẽ trả về jwt nếu đăng nhâp đúng
+
+Dùng jwt để sử dụng những api cần authencation 
+    nhâp vào bearer + jwt vừa nhận
+
+    ex: đăng nhập trả về {
+        jwt:"12345678yttt"
+    }
+
+    nhập vào ô authorization là bearer 12345678yttt
+
+
+Trong model zodiac em co để trương lưu được tạo bởi ai, và update bởi ai 
+
+Em chưa làm giao diện web nên anh chị thông cảm ạ. cấu trúc viết API em 
+đã dùng passport passport-jwt để bảo mât 
+
+
